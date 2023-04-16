@@ -14,9 +14,21 @@ namespace ttcm_quan_li_sinh_vien
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Home",
+                name: "Admin",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Teacher",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Teacher", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Student",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

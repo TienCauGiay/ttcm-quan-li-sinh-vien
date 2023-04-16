@@ -77,3 +77,7 @@ F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\obj\Debug\ttcm-quan-li-sinh-vien.csproj.CopyComplete
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\obj\Debug\ttcm-quan-li-sinh-vien.dll
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\obj\Debug\ttcm-quan-li-sinh-vien.pdb
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EntityFramework.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EntityFramework.SqlServer.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EntityFramework.xml
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EntityFramework.SqlServer.xml

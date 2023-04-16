@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6 animated bounceInRight">
+                    <h1 class="m-0"><span class="fa fa-users"></span> Students List</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Students</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card-body animated pulse">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Profile</th>
+                            <th>Student Info</th>
+                            <th>Gender</th>
+                            <th>Birthday</th>
+                            <th>Status</th>
+                            <th>Account</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="../asset/img/profile.png" width="100" alt="User Image"></td>
+                            <td>
+                                <p class="info">Name: <b>John Doe</b></p>
+                                <p class="info"><small>Contact #: <b>09874325162</b></small></p>
+                                <p class="info"><small>Address: <b>Pasig</b></small></p>
+                                <p class="info"><small>Email: <b>john@gmail.com</b></small></p>
+                            </td>
+                            <td>Male</td>
+                            <td>06-02-2021</td>
+                            <td>
+                                <p><small>Username: <b>John</b></small></p>
+                                <p><small>Password: <b>********</b></small></p>
+                            </td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td class="text-right">
+                                <a class="btn btn-sm btn-success" href="#">
+                                    <i class="fa fa-pen"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal"
+                                   data-target="#delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+      </div>
+<!-- ./wrapper -->
+<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="../asset/img/sent.png" alt="" width="50" height="46">
+                <h3>Are you sure want to delete this Student?</h3>
+                <div class="m-t-20">
+                    <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
