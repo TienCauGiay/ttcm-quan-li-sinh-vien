@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ttcm_quan_li_sinh_vien.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         // GET: Admin
         public ActionResult Index()

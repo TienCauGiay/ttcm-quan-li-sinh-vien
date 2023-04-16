@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ttcm_quan_li_sinh_vien.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         public ActionResult Index()
         {

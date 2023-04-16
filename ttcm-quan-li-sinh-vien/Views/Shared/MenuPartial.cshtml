@@ -1,5 +1,7 @@
 ﻿
-
+@{ 
+    ttcm_quan_li_sinh_vien.EF.User user = (ttcm_quan_li_sinh_vien.EF.User)Session["User"];
+}
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgba(62,88,113);">
     <!-- Brand Logo -->
@@ -14,45 +16,132 @@
                 <img src="~/assets/img/avatar.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">John Doe</a>
+                <a href="#" class="d-block">@user.Username</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item animated bounceInRight">
-                    <a href="/Student/Index" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            Student
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item animated bounceInLeft">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Teacher
-                        </p>
-                        <i class="right fas fa-angle-left"></i>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/Student/Add" class="nav-link">
-                                <i class="nav-icon fa fa-plus"></i>
-                                <p>Add</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Student/Manage" class="nav-link">
-                                <i class="nav-icon fa fa-list"></i>
-                                <p>Manage</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+        @if (user.RoleID == "admin")
+        {
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item animated bounceInLeft">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-plane-departure"></i>
+                            <p>
+                                Faculty
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="add-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-plus"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="manage-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-list"></i>
+                                    <p>Manage</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item animated bounceInLeft">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-people-arrows"></i>
+                            <p>
+                                Student
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="add-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-plus"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="manage-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-list"></i>
+                                    <p>Manage</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item animated bounceInLeft">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                User
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="add-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-plus"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="manage-instructor.html" class="nav-link">
+                                    <i class="nav-icon fa fa-list"></i>
+                                    <p>Manage</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        }
+        @if (user.RoleID == "teacher")
+        {
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i class="nav-icon fa fa-people-arrows"></i>
+                            <p>
+                                Student
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html" class="nav-link">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Score
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+        @if (user.RoleID == "student")
+        {
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="profile.html" class="nav-link">
+                            <i class="nav-icon fa fa-user"></i>
+                            <p>
+                                My Profile
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="schedule.html" class="nav-link">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Score
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

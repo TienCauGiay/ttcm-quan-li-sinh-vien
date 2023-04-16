@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ttcm_quan_li_sinh_vien.Controllers
 {
-    public class TeacherController : Controller
+    public class TeacherController : BaseController
     {
         // GET: Teacher
         public ActionResult Index()
