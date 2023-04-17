@@ -7,19 +7,19 @@
     <!-- Brand Logo -->
     @if (user.RoleID == "admin")
     {
-        <a href="quan-tri-vien" class="brand-link animated swing">
+        <a href="@Url.Action("Index", "Admin")" class="brand-link animated swing">
             <img src="~/assets/img/logo1.png" alt="DSMS Logo" width="200">
         </a>
     }
     @if (user.RoleID == "teacher")
     {
-        <a href="giang-vien" class="brand-link animated swing">
+        <a href="@Url.Action("Index", "Teacher")" class="brand-link animated swing">
             <img src="~/assets/img/logo1.png" alt="DSMS Logo" width="200">
         </a>
     }
     @if (user.RoleID == "student")
     {
-        <a href="sinh-vien" class="brand-link animated swing">
+        <a href="@Url.Action("Index", "Student")" class="brand-link animated swing">
             <img src="~/assets/img/logo1.png" alt="DSMS Logo" width="200">
         </a>
     }
@@ -49,13 +49,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="them-khoa" class="nav-link">
+                                <a href="@Url.Action("AddFaculty", "Faculty")" class="nav-link">
                                     <i class="nav-icon fa fa-plus"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="quan-li-khoa" class="nav-link">
+                                <a href="@Url.Action("ManageFaculty", "Faculty")" class="nav-link">
                                     <i class="nav-icon fa fa-list"></i>
                                     <p>Manage</p>
                                 </a>
@@ -72,13 +72,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="them-giang-vien" class="nav-link">
+                                <a href="@Url.Action("AddTeacher", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-plus"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="quan-li-giang-vien" class="nav-link">
+                                <a href="@Url.Action("ManageTeacher", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-list"></i>
                                     <p>Manage</p>
                                 </a>
@@ -95,13 +95,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="them-sinh-vien" class="nav-link">
+                                <a href="@Url.Action("AddStudent", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-plus"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="quan-li-sinh-vien" class="nav-link">
+                                <a href="@Url.Action("ManageTeacher", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-list"></i>
                                     <p>Manage</p>
                                 </a>
@@ -118,13 +118,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="them-tai-khoan" class="nav-link">
+                                <a href="@Url.Action("AddUser", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-plus"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="quan-li-tai-khoan" class="nav-link">
+                                <a href="@Url.Action("ManageUser", "Admin")" class="nav-link">
                                     <i class="nav-icon fa fa-list"></i>
                                     <p>Manage</p>
                                 </a>

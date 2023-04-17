@@ -33,13 +33,13 @@ namespace ttcm_quan_li_sinh_vien
 
             routes.MapRoute(
                 name: "admin update faculty",
-                url: "quan-li-khoa-sua-{id}",
+                url: "quan-li-khoa/sua-{id}",
                 defaults: new { controller = "Faculty", action = "UpdateFaculty", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "admin delete faculty",
-                url: "quan-li-khoa-xoa-{id}",
+                url: "quan-li-khoa/xoa-{id}",
                 defaults: new { controller = "Faculty", action = "DeleteFaculty", id = UrlParameter.Optional }
             );
 

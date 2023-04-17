@@ -33,10 +33,10 @@
                                 <td>@item.FacultyID</td>
                                 <td>@item.Name</td>
                                 <td class="text-right">
-                                    <a class="btn btn-sm btn-success" href="quan-li-khoa-sua-@item.FacultyID">
+                                    <a class="btn btn-sm btn-success" href="@Url.Action("UpdateFaculty", "Faculty", new {id = item.FacultyID})">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <a class="btn btn-sm btn-danger" href="quan-li-khoa-xoa-@item.FacultyID" data-toggle="modal"
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("DeleteFaculty", "Faculty", new {id = item.FacultyID})" data-toggle="modal"
                                        data-target="#delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
