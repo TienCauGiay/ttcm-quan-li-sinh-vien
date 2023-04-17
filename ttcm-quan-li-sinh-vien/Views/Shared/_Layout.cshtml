@@ -31,7 +31,9 @@
         </nav>
         <!-- /.navbar -->
         @Html.Partial("MenuPartial")
-        @RenderBody()
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->

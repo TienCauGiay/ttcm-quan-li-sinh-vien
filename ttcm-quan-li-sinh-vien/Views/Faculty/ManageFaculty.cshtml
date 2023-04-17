@@ -1,0 +1,53 @@
+﻿@model List<ttcm_quan_li_sinh_vien.EF.FACULTY>
+@{
+    ViewBag.Title = "ManageFaculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-plane-departure"></span> Danh sách khoa đào tạo</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="card-body animated pulse">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã khoa</th>
+                        <th>Tên khoa</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FacultyID</td>
+                                <td>@item.Name</td>
+                                <td class="text-right">
+                                    <a class="btn btn-sm btn-success" href="quan-li-khoa-sua-@item.FacultyID">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" href="quan-li-khoa-xoa-@item.FacultyID" data-toggle="modal"
+                                       data-target="#delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

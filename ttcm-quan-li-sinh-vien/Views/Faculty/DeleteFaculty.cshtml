@@ -1,0 +1,51 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.FACULTY
+@{
+    ViewBag.Title = "DeleteFaculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-10 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-trash"></span> Bạn có chắc muốn xóa khoa này không</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Thông tin khoa</h3>
+            </div>
+            @using (Html.BeginForm("DeleteFaculty", "Faculty", FormMethod.Post))
+            {
+                <span class="text-danger">@ViewBag.ErrorFaculty</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã khoa</label>
+                                @Html.TextBoxFor(m => m.FacultyID, new { @class = "form-control", @placeholder = "Mã khoa", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên khoa</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Tên khoa", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Xác nhận xóa</button>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+

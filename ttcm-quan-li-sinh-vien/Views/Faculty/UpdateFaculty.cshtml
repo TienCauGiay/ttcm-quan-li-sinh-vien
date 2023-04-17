@@ -1,0 +1,49 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.FACULTY
+@{
+    ViewBag.Title = "UpdateFaculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-pen"></span> Cập nhật thông tin khoa</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Nhập thông tin khoa cần cập nhật</h3>
+            </div>
+            @using (Html.BeginForm("UpdateFaculty", "Faculty", FormMethod.Post))
+            {
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã khoa</label>
+                                @Html.TextBoxFor(m => m.FacultyID, new { @class = "form-control", @placeholder = "Mã khoa", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên khoa</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Tên khoa" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            }
+        </div>
+    </div>
+</section>
