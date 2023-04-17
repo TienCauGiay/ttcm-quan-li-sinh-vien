@@ -15,24 +15,24 @@ namespace ttcm_quan_li_sinh_vien
 
             routes.MapRoute(
                 name: "Admin",
-                url: "{controller}/{action}/{id}",
+                url: "quan-tri-vien",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Teacher",
-                url: "{controller}/{action}/{id}",
+                url: "giang-vien",
                 defaults: new { controller = "Teacher", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Student",
-                url: "{controller}/{action}/{id}",
+                url: "sinh-vien",
                 defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "Login",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
