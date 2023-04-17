@@ -19,6 +19,9 @@ namespace ttcm_quan_li_sinh_vien.EF
         [StringLength(20)]
         public string StudentID { get; set; }
 
+        [StringLength(20)]
+        public string FacultyID { get; set; }
+
         [StringLength(30)]
         public string FullName { get; set; }
 
@@ -37,11 +40,16 @@ namespace ttcm_quan_li_sinh_vien.EF
         [StringLength(100)]
         public string Email { get; set; }
 
+        [StringLength(100)]
+        public string Image { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? YearAdmission { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASS> CLASSes { get; set; }
+
+        public virtual FACULTY FACULTY { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }

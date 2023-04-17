@@ -12,7 +12,7 @@ namespace ttcm_quan_li_sinh_vien.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FACULTY()
         {
-            CLASSes = new HashSet<CLASS>();
+            STUDENTs = new HashSet<STUDENT>();
             TEACHERs = new HashSet<TEACHER>();
         }
 
@@ -23,7 +23,7 @@ namespace ttcm_quan_li_sinh_vien.EF
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLASS> CLASSes { get; set; }
+        public virtual ICollection<STUDENT> STUDENTs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACHER> TEACHERs { get; set; }

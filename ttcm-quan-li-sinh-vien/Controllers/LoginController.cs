@@ -38,6 +38,12 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             return View(user);
         }
 
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Forgot()
         {
             return View();
