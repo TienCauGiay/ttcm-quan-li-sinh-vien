@@ -50,6 +50,24 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
+                name: "admin update teacher",
+                url: "quan-li-giang-vien/sua-{id}",
+                defaults: new { controller = "Admin", action = "UpdateTeacher", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin delete teacher",
+                url: "quan-li-giang-vien/xoa-{id}",
+                defaults: new { controller = "Admin", action = "DeleteTeacher", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin search teacher",
+                url: "quan-li-giang-vien/tim-kiem",
+                defaults: new { controller = "Admin", action = "SearchTeacher", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "admin manage teacher",
                 url: "quan-li-giang-vien",
                 defaults: new { controller = "Admin", action = "ManageTeacher", id = UrlParameter.Optional }

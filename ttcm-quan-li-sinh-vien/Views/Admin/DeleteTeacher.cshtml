@@ -1,14 +1,15 @@
 ﻿@model ttcm_quan_li_sinh_vien.EF.TEACHER
+
 @{
-    ViewBag.Title = "AddTeacher";
+    ViewBag.Title = "DeleteTeacher";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6 animated bounceInRight">
-                <h1 class="m-0"><span class="fa fa-plus"></span> Thêm giảng viên mới</h1>
+            <div class="col-sm-12 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-plus"></span> Bạn có chắc muốn xóa giảng viên này không</h1>
             </div>
         </div>
         <!-- /.row -->
@@ -21,12 +22,12 @@
     <div class="container-fluid">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Thông tin giảng viên mới</h3>
+                <h3 class="card-title">Thông tin giảng viên</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             @*, new { enctype = "multipart/form-data" }*@
-            @using (Html.BeginForm("AddTeacher", "Admin", FormMethod.Post))
+            @using (Html.BeginForm("DeleteTeacher", "Admin", FormMethod.Post))
             {
                 <span class="text-danger">@ViewBag.ErrorTeacher</span>
                 <div class="card-body">
@@ -34,50 +35,50 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mã giảng viên</label>
-                                @Html.TextBoxFor(m => m.TeacherID, new { @class = "form-control", @placeholder = "Mã giảng viên" })
+                                @Html.TextBoxFor(m => m.TeacherID, new { @class = "form-control", @placeholder = "Mã giảng viên", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Khoa</label>
-                                @Html.DropDownListFor(m => m.FacultyID, ViewBag.Faculty as SelectList, "-- Chọn khoa --", new { @class = "form-control" })
+                                @Html.DropDownListFor(m => m.FacultyID, ViewBag.Faculty as SelectList, "-- Chọn khoa --", new { @class = "form-control", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Họ tên</label>
-                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Họ tên" })
+                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Họ tên", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Ngày sinh</label>
-                                @Html.TextBoxFor(m => m.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                @Html.TextBoxFor(m => m.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giới tính</label>
-                                @Html.TextBoxFor(m => m.Gender, new { @class = "form-control", @placeholder = "Giới tính" })
+                                @Html.TextBoxFor(m => m.Gender, new { @class = "form-control", @placeholder = "Giới tính", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
-                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Địa chỉ", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Điện thoại</label>
-                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Điện thoại" })
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Điện thoại", @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -92,7 +93,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận xóa</button>
                 </div>
             }
         </div>
