@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -125,12 +126,108 @@ namespace ttcm_quan_li_sinh_vien.Controllers
 
         public ActionResult AddStudent()
         {
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
             return View();
         }
 
-        public ActionResult ManageStudent()
+        [HttpPost]
+        public ActionResult AddStudent(STUDENT student)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (_context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID) == null)
+                {
+                    _context.STUDENTs.Add(student);
+                    _context.SaveChanges();
+                    ViewBag.ErrorStudent = "";
+                    return RedirectToAction("ManageStudent");
+                }
+                else
+                {
+                    ViewBag.ErrorStudent = "Mã sinh viên đã tồn tại";
+                }
+            }
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            return View(student);
+        }
+
+        public ActionResult ManageStudent(int? page)
+        {
+            int pageSize = 5;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listStudent = _context.STUDENTs.ToList();
+            return View(listStudent.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult SearchStudent(int? page, string searchStudent)
+        {
+            int pageSize = 5;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listStudent = _context.STUDENTs.Where(x => x.FullName.Contains(searchStudent)).ToList();
+            ViewBag.SearchStudent = searchStudent;
+            return View(listStudent.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult UpdateStudent(string id)
+        {
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == id);
+            return View(res);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStudent(STUDENT student)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID);
+                res.FacultyID = student.FacultyID;
+                res.FullName = student.FullName;
+                res.Birthday = student.Birthday;
+                res.Gender = student.Gender;
+                res.Address = student.Address;
+                res.PhoneNumber = student.PhoneNumber;
+                res.Email = student.Email;
+                res.Image = student.Image;
+                res.YearAdmission= student.YearAdmission;
+                _context.STUDENTs.AddOrUpdate(res);
+                _context.SaveChanges();
+                return RedirectToAction("ManageStudent");
+            }
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            return View(student);
+        }
+
+        public ActionResult DeleteStudent(string id)
+        {
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == id);
+            return View(res);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(STUDENT student)
+        {
+            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            var studentClass = _context.CLASSes.FirstOrDefault(x => x.StudentID == student.StudentID);
+            if (studentClass != null)
+            {
+                ViewBag.ErrorStudent = "Không thể xóa sinh viên này";
+                return View(student);
+            }
+            else
+            {
+                var scoreStudent = _context.SCOREs.Where(x=>x.StudentID== student.StudentID);
+                if(scoreStudent != null)
+                {
+                    _context.SCOREs.RemoveRange(scoreStudent);
+                }
+                var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID);
+                ViewBag.ErrorStudent = "";
+                _context.STUDENTs.Remove(res);
+                _context.SaveChanges();
+                return RedirectToAction("ManageStudent");
+            }
         }
 
         public ActionResult AddUser()

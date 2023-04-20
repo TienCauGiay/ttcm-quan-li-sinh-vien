@@ -80,9 +80,27 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
+               name: "admin update student",
+               url: "quan-li-sinh-vien/sua-{id}",
+               defaults: new { controller = "Admin", action = "UpdateStudent", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
+                name: "admin delete student",
+                url: "quan-li-sinh-vien/xoa-{id}",
+                defaults: new { controller = "Admin", action = "DeleteStudent", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "admin manage student",
                 url: "quan-li-sinh-vien",
                 defaults: new { controller = "Admin", action = "ManageStudent", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin search student",
+                url: "quan-li-sinh-vien/tim-kiem",
+                defaults: new { controller = "Admin", action = "SearchStudent", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

@@ -1,6 +1,6 @@
 ﻿@model ttcm_quan_li_sinh_vien.EF.STUDENT
 @{
-    ViewBag.Title = "AddStudent";
+    ViewBag.Title = "UpdateStudent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 animated bounceInRight">
-                <h1 class="m-0"><span class="fa fa-plus"></span> Thêm sinh viên mới</h1>
+                <h1 class="m-0"><span class="fa fa-pen"></span> Cập nhật thông tin sinh viên</h1>
             </div>
         </div>
         <!-- /.row -->
@@ -21,12 +21,12 @@
     <div class="container-fluid">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Thông tin sinh viên mới</h3>
+                <h3 class="card-title">Thông tin sinh viên</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             @*, new { enctype = "multipart/form-data" }*@
-            @using (Html.BeginForm("AddStudent", "Admin", FormMethod.Post))
+            @using (Html.BeginForm("UpdateStudent", "Admin", FormMethod.Post))
             {
                 <span class="text-danger">@ViewBag.ErrorStudent</span>
                 <div class="card-body">
@@ -34,7 +34,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mã sinh viên</label>
-                                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control", @placeholder = "Mã sinh viên" })
+                                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control", @placeholder = "Mã sinh viên", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                 </div>
             }
         </div>

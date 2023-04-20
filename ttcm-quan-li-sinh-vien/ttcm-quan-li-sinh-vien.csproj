@@ -171,6 +171,7 @@
     <Content Include="assets\img\logo1.png" />
     <Content Include="assets\img\profile.png" />
     <Content Include="assets\img\sent.png" />
+    <Content Include="assets\img\student\anh-dai-dien.jpg" />
     <Content Include="assets\jquery\jquery.min.js" />
     <Content Include="assets\js\adminlte.js" />
     <Content Include="assets\js\bootstrap.bundle.min.js" />
@@ -267,9 +268,13 @@
     <Content Include="Views\Admin\SearchTeacher.cshtml" />
     <Content Include="Views\Admin\DeleteTeacher.cshtml" />
     <Content Include="Views\Admin\UpdateTeacher.cshtml" />
+    <Content Include="Views\Admin\SearchStudent.cshtml" />
+    <Content Include="Views\Admin\UpdateStudent.cshtml" />
+    <Content Include="Views\Admin\DeleteStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\img\teacher\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

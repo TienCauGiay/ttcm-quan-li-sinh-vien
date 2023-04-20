@@ -1,8 +1,10 @@
-﻿@using PagedList.Mvc;
+﻿
+@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<ttcm_quan_li_sinh_vien.EF.STUDENT>
+
 @{
-    ViewBag.Title = "ManageStudent";
+    ViewBag.Title = "SearchStudent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,12 +14,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 animated bounceInRight">
-                <h1 class="m-0"><span class="fa fa-people-arrows"></span> Danh sách sinh viên</h1>
+                <h1 class="m-0"><span class="fa fa-chalkboard-teacher"></span> Danh sách giảng viên</h1>
             </div>
             <div class="col-sm-6">
                 @using (Html.BeginForm("SearchStudent", "Admin", FormMethod.Post))
                 {
-                    <input type="search" id="searchStudent" name="searchStudent" class="form-control" placeholder="Tìm kiếm sinh viên..." aria-controls="example1">
+                    <input type="search" id="searchStudent" name="searchStudent" class="form-control" placeholder="Tìm kiếm sinh viên..." value="@ViewBag.SearchStudent" aria-controls="example1">
                 }
             </div>
         </div>
@@ -50,7 +52,7 @@
                                 }
                                 else
                                 {
-                                    <td><img src="~/assets/img/student/@item.Image" width="100" alt="Thiếu ảnh"> <br /> ID: @item.StudentID</td>
+                                    <td><img src="~/assets/img/student/@item.Image" width="100" alt="Ảnh đại diện"> <br /> ID: @item.StudentID</td>
                                 }
                                 <td>
                                     <p class="info">Họ tên: <b>@item.FullName</b></p>
@@ -77,7 +79,7 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("ManageStudent", new { page }), new PagedListRenderOptions
+            @Html.PagedListPager(Model, page => Url.Action("ManageStudent", new { page, @searchStudent = ViewBag.SearchStudent }), new PagedListRenderOptions
                        {
                            UlElementClasses = new[] { "pagination" }
                        })
