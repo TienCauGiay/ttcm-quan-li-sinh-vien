@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<ttcm_quan_li_sinh_vien.EF.STUDENT>
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-4 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-people-arrows"></span> Danh sách sinh viên</h1>
+            </div>
+            <div class="col-sm-4">
+                <select name="ListClass" class="form-control">
+                    @foreach (var item in (List<ttcm_quan_li_sinh_vien.EF.CLASS>)ViewBag.ClassList)
+                    {
+                        <option value="@item.ClassID">@item.ClassID</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm("SearchStudent", "Teacher", FormMethod.Post))
+                {
+                    <input type="search" id="searchStudent" name="searchStudent" class="form-control" placeholder="Tìm kiếm sinh viên..." aria-controls="example1">
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card-body animated pulse">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Ảnh đại diện</th>
+                        <th>Thông tin sinh viên</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Khoa theo học</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.Image == null)
+                                {
+                                    <td><img src="~/assets/img/profile.png" width="100" alt="Ảnh đại diện"> <br /> ID: @item.StudentID</td>
+                                }
+                                else
+                                {
+                                    <td><img src="~/assets/img/student/@item.Image" width="100" alt="Thiếu ảnh"> <br /> ID: @item.StudentID</td>
+                                }
+                                <td>
+                                    <p class="info">Họ tên: <b>@item.FullName</b></p>
+                                    <p class="info"><small>Điện thoại: <b>@item.PhoneNumber</b></small></p>
+                                    <p class="info"><small>Địa chỉ: <b>@item.Address</b></small></p>
+                                    <p class="info"><small>Email: <b>@item.Email</b></small></p>
+                                    <p class="info"><small>Ngày nhập học: <b>@(item.YearAdmission.HasValue ? item.YearAdmission.Value.ToString("dd/MM/yyyy"): "Trống")</b></small></p>
+                                </td>
+                                <td>@item.Gender</td>
+                                <td>@(item.Birthday.HasValue ? item.Birthday.Value.ToString("dd/MM/yyyy") : "Trống")</td>
+                                <td>@item.FACULTY.Name</td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("ManageStudent", new { page }), new PagedListRenderOptions
+                       {
+                           UlElementClasses = new[] { "pagination" }
+                       })
+        </div>
+    </div>
+</section>
+

@@ -271,6 +271,9 @@
     <Content Include="Views\Admin\SearchStudent.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
     <Content Include="Views\Admin\DeleteStudent.cshtml" />
+    <Content Include="Views\Teacher\Student.cshtml" />
+    <Content Include="Views\Teacher\Score.cshtml" />
+    <Content Include="Views\Teacher\Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
