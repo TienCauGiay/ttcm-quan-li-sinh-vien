@@ -12,12 +12,12 @@ namespace ttcm_quan_li_sinh_vien.EF
         [Key]
         [Column(Order = 0)]
         [StringLength(20)]
-        public string SubjectID { get; set; }
+        public string StudentID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(20)]
-        public string ClassID { get; set; }
+        public string SubjectID { get; set; }
 
         [StringLength(100)]
         public string TimeLearning { get; set; }
@@ -25,7 +25,7 @@ namespace ttcm_quan_li_sinh_vien.EF
         [StringLength(100)]
         public string AddressLearn { get; set; }
 
-        public virtual CLASS CLASS { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
 
         public virtual SUBJECT SUBJECT { get; set; }
     }

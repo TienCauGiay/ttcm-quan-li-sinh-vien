@@ -9,18 +9,13 @@ namespace ttcm_quan_li_sinh_vien.EF
     [Table("CLASS")]
     public partial class CLASS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CLASS()
-        {
-            REGISTERSUBJECTs = new HashSet<REGISTERSUBJECT>();
-        }
-
-        [StringLength(20)]
-        public string ClassID { get; set; }
-
+        [Key]
+        [Column(Order = 0)]
         [StringLength(20)]
         public string TeacherID { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
         [StringLength(20)]
         public string StudentID { get; set; }
 
@@ -30,8 +25,5 @@ namespace ttcm_quan_li_sinh_vien.EF
         public virtual STUDENT STUDENT { get; set; }
 
         public virtual TEACHER TEACHER { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REGISTERSUBJECT> REGISTERSUBJECTs { get; set; }
     }
 }

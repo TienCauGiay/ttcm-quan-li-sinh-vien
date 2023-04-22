@@ -1,4 +1,4 @@
-﻿namespace ttcm_quan_li_sinh_vien.EF
+namespace ttcm_quan_li_sinh_vien.EF
 {
     using System;
     using System.Collections.Generic;
@@ -17,9 +17,8 @@
         }
 
         [StringLength(20)]
-        [Required(ErrorMessage = "Mã khoa không được để trống")]
         public string FacultyID { get; set; }
-        [Required(ErrorMessage = "Tên khoa không được để trống")]
+
         [StringLength(100)]
         public string Name { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Microsoft.Ajax.Utilities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -46,10 +47,11 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         public ActionResult Student(int? page)
         {
             var user = (User)Session["User"];
+            var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
             int pageSize = 5;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
-            var listStudent = _context.STUDENTs.ToList();
-            ViewBag.ClassList = _context.CLASSes.ToList();
+            var listStudent = _context.STUDENTs.Where(x=>x.FacultyID == teacher.FacultyID).ToList();
+            ViewBag.ClassList = _context.CLASSes.DistinctBy(c => c.Name).ToList();
             return View(listStudent.ToPagedList(pageNumber, pageSize));
         }
 

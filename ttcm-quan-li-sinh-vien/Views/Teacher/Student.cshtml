@@ -18,7 +18,7 @@
                 <select name="ListClass" class="form-control">
                     @foreach (var item in (List<ttcm_quan_li_sinh_vien.EF.CLASS>)ViewBag.ClassList)
                     {
-                        <option value="@item.ClassID">@item.ClassID</option>
+                        <option value="@item.Name">@item.Name</option>
                     }
                 </select>
             </div>
@@ -75,7 +75,7 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("ManageStudent", new { page }), new PagedListRenderOptions
+            @Html.PagedListPager(Model, page => Url.Action("Student", new { page }), new PagedListRenderOptions
                        {
                            UlElementClasses = new[] { "pagination" }
                        })

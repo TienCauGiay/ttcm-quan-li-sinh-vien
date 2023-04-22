@@ -150,6 +150,7 @@
     <Compile Include="EF\SEMESTER.cs" />
     <Compile Include="EF\STUDENT.cs" />
     <Compile Include="EF\SUBJECT.cs" />
+    <Compile Include="EF\sysdiagram.cs" />
     <Compile Include="EF\TEACHER.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Global.asax.cs">

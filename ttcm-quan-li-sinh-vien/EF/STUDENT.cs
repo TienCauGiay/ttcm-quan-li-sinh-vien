@@ -13,6 +13,7 @@ namespace ttcm_quan_li_sinh_vien.EF
         public STUDENT()
         {
             CLASSes = new HashSet<CLASS>();
+            REGISTERSUBJECTs = new HashSet<REGISTERSUBJECT>();
             SCOREs = new HashSet<SCORE>();
         }
 
@@ -50,6 +51,9 @@ namespace ttcm_quan_li_sinh_vien.EF
         public virtual ICollection<CLASS> CLASSes { get; set; }
 
         public virtual FACULTY FACULTY { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REGISTERSUBJECT> REGISTERSUBJECTs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }
