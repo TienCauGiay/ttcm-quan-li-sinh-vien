@@ -9,15 +9,12 @@ namespace ttcm_quan_li_sinh_vien.EF
     [Table("REGISTERSUBJECT")]
     public partial class REGISTERSUBJECT
     {
-        [Key]
-        [Column(Order = 0)]
+        [StringLength(20)]
+        public string RegisterSubjectID { get; set; }
+
+        [Required]
         [StringLength(20)]
         public string StudentID { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [StringLength(20)]
-        public string SubjectID { get; set; }
 
         [StringLength(100)]
         public string TimeLearning { get; set; }
@@ -26,7 +23,5 @@ namespace ttcm_quan_li_sinh_vien.EF
         public string AddressLearn { get; set; }
 
         public virtual STUDENT STUDENT { get; set; }
-
-        public virtual SUBJECT SUBJECT { get; set; }
     }
 }

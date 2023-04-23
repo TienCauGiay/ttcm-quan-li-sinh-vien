@@ -20,7 +20,6 @@ namespace ttcm_quan_li_sinh_vien.EF
         public virtual DbSet<SEMESTER> SEMESTERs { get; set; }
         public virtual DbSet<STUDENT> STUDENTs { get; set; }
         public virtual DbSet<SUBJECT> SUBJECTs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TEACHER> TEACHERs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -32,11 +31,6 @@ namespace ttcm_quan_li_sinh_vien.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<STUDENT>()
-                .HasMany(e => e.CLASSes)
-                .WithRequired(e => e.STUDENT)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<STUDENT>()
                 .HasMany(e => e.REGISTERSUBJECTs)
                 .WithRequired(e => e.STUDENT)
                 .WillCascadeOnDelete(false);
@@ -47,18 +41,8 @@ namespace ttcm_quan_li_sinh_vien.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SUBJECT>()
-                .HasMany(e => e.REGISTERSUBJECTs)
-                .WithRequired(e => e.SUBJECT)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SUBJECT>()
                 .HasMany(e => e.SCOREs)
                 .WithRequired(e => e.SUBJECT)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<TEACHER>()
-                .HasMany(e => e.CLASSes)
-                .WithRequired(e => e.TEACHER)
                 .WillCascadeOnDelete(false);
         }
     }

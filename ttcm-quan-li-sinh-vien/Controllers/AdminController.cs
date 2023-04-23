@@ -108,25 +108,16 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         public ActionResult DeleteTeacher(TEACHER teacher)
         {
             ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
-            var teacherClass = _context.CLASSes.FirstOrDefault(x => x.TeacherID == teacher.TeacherID);
-            if(teacherClass != null)
-            {
-                ViewBag.ErrorTeacher = "Không thể xóa giảng viên này";
-                return View(teacher);
-            }
-            else
-            {
-                var res = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == teacher.TeacherID);
-                ViewBag.ErrorTeacher = "";
-                _context.TEACHERs.Remove(res);
-                _context.SaveChanges();
-                return RedirectToAction("ManageTeacher");
-            }
+            var res = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == teacher.TeacherID);
+            ViewBag.ErrorTeacher = "";
+            _context.TEACHERs.Remove(res);
+            _context.SaveChanges();
+            return RedirectToAction("ManageTeacher");
         }
 
         public ActionResult AddStudent()
         {
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
             return View();
         }
 
@@ -147,7 +138,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                     ViewBag.ErrorStudent = "Mã sinh viên đã tồn tại";
                 }
             }
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
             return View(student);
         }
 
@@ -170,7 +161,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
 
         public ActionResult UpdateStudent(string id)
         {
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
             var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == id);
             return View(res);
         }
@@ -181,7 +172,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             if (ModelState.IsValid)
             {
                 var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID);
-                res.FacultyID = student.FacultyID;
+                res.ClassID = student.ClassID;
                 res.FullName = student.FullName;
                 res.Birthday = student.Birthday;
                 res.Gender = student.Gender;
@@ -194,13 +185,13 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("ManageStudent");
             }
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
             return View(student);
         }
 
         public ActionResult DeleteStudent(string id)
         {
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
             var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == id);
             return View(res);
         }
@@ -208,9 +199,9 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         [HttpPost]
         public ActionResult DeleteStudent(STUDENT student)
         {
-            ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
-            var studentClass = _context.CLASSes.FirstOrDefault(x => x.StudentID == student.StudentID);
-            if (studentClass != null)
+            ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
+            var resgisterSubject = _context.REGISTERSUBJECTs.FirstOrDefault(x => x.StudentID == student.StudentID);
+            if (resgisterSubject != null)
             {
                 ViewBag.ErrorStudent = "Không thể xóa sinh viên này";
                 return View(student);

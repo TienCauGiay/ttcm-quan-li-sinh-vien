@@ -50,7 +50,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
             int pageSize = 5;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
-            var listStudent = _context.STUDENTs.Where(x=>x.FacultyID == teacher.FacultyID).ToList();
+            var listStudent = _context.STUDENTs.Where(x => x.CLASS.FacultyID == teacher.FacultyID).ToList();
             ViewBag.ClassList = _context.CLASSes.DistinctBy(c => c.Name).ToList();
             return View(listStudent.ToPagedList(pageNumber, pageSize));
         }

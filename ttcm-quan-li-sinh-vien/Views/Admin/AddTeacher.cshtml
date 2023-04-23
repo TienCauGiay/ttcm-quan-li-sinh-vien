@@ -42,6 +42,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Khoa</label>
                                 @Html.DropDownListFor(m => m.FacultyID, ViewBag.Faculty as SelectList, "-- Chọn khoa --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FacultyID, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-4">

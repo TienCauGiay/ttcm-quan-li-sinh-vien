@@ -12,7 +12,6 @@ namespace ttcm_quan_li_sinh_vien.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUBJECT()
         {
-            REGISTERSUBJECTs = new HashSet<REGISTERSUBJECT>();
             SCOREs = new HashSet<SCORE>();
         }
 
@@ -26,9 +25,6 @@ namespace ttcm_quan_li_sinh_vien.EF
         public string Name { get; set; }
 
         public int? NumberTC { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REGISTERSUBJECT> REGISTERSUBJECTs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }

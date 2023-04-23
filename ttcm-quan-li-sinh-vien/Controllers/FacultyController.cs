@@ -76,9 +76,9 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         public ActionResult DeleteFaculty(FACULTY faculty)
         {
             var teacher = _context.TEACHERs.FirstOrDefault(x => x.FacultyID == faculty.FacultyID);
-            var student = _context.STUDENTs.FirstOrDefault(x => x.FacultyID == faculty.FacultyID);
+            var classes = _context.CLASSes.FirstOrDefault(x => x.FacultyID == faculty.FacultyID);
             var res = _context.FACULTies.FirstOrDefault(x => x.FacultyID == faculty.FacultyID);
-            if (teacher == null && student == null)
+            if (teacher == null && classes == null)
             {
                 _context.FACULTies.Remove(res);
                 ViewBag.ErrorFaculty = "";

@@ -34,7 +34,7 @@
                         <th>Thông tin sinh viên</th>
                         <th>Giới tính</th>
                         <th>Ngày sinh</th>
-                        <th>Khoa theo học</th>
+                        <th>Lớp theo học</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -61,7 +61,7 @@
                                 </td>
                                 <td>@item.Gender</td>
                                 <td>@(item.Birthday.HasValue ? item.Birthday.Value.ToString("dd/MM/yyyy") : "Trống")</td>
-                                <td>@item.FACULTY.Name</td>
+                                <td>@item.CLASS.Name</td>
                                 <td class="text-right">
                                     <a class="btn btn-sm btn-success" href="@Url.Action("UpdateStudent", "Admin", new { id = item.StudentID})">
                                         <i class="fa fa-pen"></i>
