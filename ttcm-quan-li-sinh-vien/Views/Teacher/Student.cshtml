@@ -7,6 +7,7 @@
 }
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <div class="content-header">
     <div class="container-fluid">
@@ -15,7 +16,7 @@
                 <h1 class="m-0"><span class="fa fa-people-arrows"></span> Danh sách sinh viên</h1>
             </div>
             <div class="col-sm-4">
-                <select name="ListClass" class="form-control">
+                <select name="ListClass" id="ListClass" class="form-control">
                     @foreach (var item in (List<ttcm_quan_li_sinh_vien.EF.CLASS>)ViewBag.ClassList)
                     {
                         <option value="@item.Name">@item.Name</option>
@@ -42,7 +43,7 @@
                         <th>Thông tin sinh viên</th>
                         <th>Giới tính</th>
                         <th>Ngày sinh</th>
-                        <th>Khoa theo học</th>
+                        <th>Lớp theo học</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,7 +69,7 @@
                                 </td>
                                 <td>@item.Gender</td>
                                 <td>@(item.Birthday.HasValue ? item.Birthday.Value.ToString("dd/MM/yyyy") : "Trống")</td>
-                                <td>@item.FACULTY.Name</td>
+                                <td>@item.CLASS.Name</td>
                             </tr>
 
                         }
@@ -83,3 +84,23 @@
     </div>
 </section>
 
+<script>
+    $(document).ready(function() {
+    $('#ListClass').on('change', function() {
+        var classId = $(this).val();
+        var url = '@Url.Action("StudentByClass", "Teacher")';
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: { classId: classId },
+            success: function (data) {
+                location.reload(data);
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+});
+
+</script>

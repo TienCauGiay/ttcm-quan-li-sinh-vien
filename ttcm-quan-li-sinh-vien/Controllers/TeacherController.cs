@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using ttcm_quan_li_sinh_vien.EF;
@@ -51,8 +52,16 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             int pageSize = 5;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
             var listStudent = _context.STUDENTs.Where(x => x.CLASS.FacultyID == teacher.FacultyID).ToList();
-            ViewBag.ClassList = _context.CLASSes.DistinctBy(c => c.Name).ToList();
+            ViewBag.ClassList = _context.CLASSes.Where(x => x.FACULTY.FacultyID == teacher.FacultyID).DistinctBy(c => c.Name).ToList();
             return View(listStudent.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult StudentByClass(string classID)
+        {
+            var students = _context.STUDENTs
+                          .Where(x => x.ClassID == classID)
+                          .ToList();
+            return RedirectToAction("Student", students);
         }
 
         public ActionResult Score()
