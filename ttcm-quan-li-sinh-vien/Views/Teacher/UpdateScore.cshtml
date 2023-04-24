@@ -1,0 +1,79 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.SCORE
+
+@{
+    ViewBag.Title = "UpdateScore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-pen"></span> Cập nhật điểm sinh viên</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Thông tin điểm sinh viên</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @*, new { enctype = "multipart/form-data" }*@
+            @using (Html.BeginForm("UpdateScore", "Teacher", FormMethod.Post))
+            {
+                <span class="text-danger">@ViewBag.ErrorStudent</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã sinh viên</label>
+                                @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control", @placeholder = "Mã sinh viên", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StudentID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã môn học</label>
+                                @Html.TextBoxFor(m => m.SubjectID, new { @class = "form-control", @placeholder = "Mã môn học", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.SubjectID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Điểm chuyên cần</label>
+                                @Html.TextBoxFor(m => m.ScoreCC, new { @class = "form-control", @placeholder = "Điểm chuyên cần" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Điểm kiểm tra</label>
+                                @Html.TextBoxFor(m => m.ScoreKT, new { @class = "form-control", @placeholder = "Điểm kiểm tra" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Điểm thi</label>
+                                @Html.TextBoxFor(m => m.DiemThi, new { @class = "form-control", @placeholder = "Điểm thi" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

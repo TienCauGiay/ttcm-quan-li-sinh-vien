@@ -85,3 +85,9 @@ F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\PagedList.Mvc.dll
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\PagedList.xml
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\PagedList.Mvc.xml
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EPPlus.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EPPlus.Interfaces.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EPPlus.System.Drawing.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\Microsoft.IO.RecyclableMemoryStream.dll
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EPPlus.xml
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\Microsoft.IO.RecyclableMemoryStream.xml

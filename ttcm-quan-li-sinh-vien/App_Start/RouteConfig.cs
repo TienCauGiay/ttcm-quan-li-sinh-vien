@@ -146,6 +146,18 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
+                name: "teacher manage score student",
+                url: "giang-vien/quan-li-diem-sinh-vien-theo-mon",
+                defaults: new { controller = "Teacher", action = "ScoreStudentByClass", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "teacher update score student",
+                url: "giang-vien/cap-nhat-diem-sinh-vien",
+                defaults: new { controller = "Teacher", action = "UpdateScore", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Student",
                 url: "sinh-vien",
                 defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }

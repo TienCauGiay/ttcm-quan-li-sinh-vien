@@ -1,4 +1,4 @@
-namespace ttcm_quan_li_sinh_vien.EF
+﻿namespace ttcm_quan_li_sinh_vien.EF
 {
     using System;
     using System.Collections.Generic;
@@ -9,11 +9,13 @@ namespace ttcm_quan_li_sinh_vien.EF
     [Table("SCORE")]
     public partial class SCORE
     {
+        [Required(ErrorMessage = "Mã sinh viên không được để trống")]
         [Key]
         [Column(Order = 0)]
         [StringLength(20)]
         public string StudentID { get; set; }
 
+        [Required(ErrorMessage = "Mã môn học không được để trống")]
         [Key]
         [Column(Order = 1)]
         [StringLength(20)]
