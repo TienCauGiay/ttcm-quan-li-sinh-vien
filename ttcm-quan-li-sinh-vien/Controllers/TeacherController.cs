@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using ttcm_quan_li_sinh_vien.EF;
 
 namespace ttcm_quan_li_sinh_vien.Controllers
@@ -56,12 +57,16 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             return View(listStudent.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult StudentByClass(string classID)
+        public ActionResult StudentByClass(int? page, string classlist)
         {
-            var students = _context.STUDENTs
-                          .Where(x => x.ClassID == classID)
-                          .ToList();
-            return RedirectToAction("Student", students);
+            var user = (User)Session["User"];
+            var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
+            int pageSize = 5;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listStudent = _context.STUDENTs.Where(x => x.CLASS.FacultyID == teacher.FacultyID && x.ClassID.Contains(classlist)).ToList();
+            ViewBag.ClassList = _context.CLASSes.Where(x => x.FACULTY.FacultyID == teacher.FacultyID).DistinctBy(c => c.Name).ToList();
+            ViewBag.ClassListSearch = classlist;
+            return View(listStudent.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Score()

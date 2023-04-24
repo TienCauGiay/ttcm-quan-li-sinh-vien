@@ -1,8 +1,9 @@
 ﻿@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<ttcm_quan_li_sinh_vien.EF.STUDENT>
+
 @{
-    ViewBag.Title = "Student";
+    ViewBag.Title = "StudentByClass";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -85,10 +86,11 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Student", new { page }), new PagedListRenderOptions
+            @Html.PagedListPager(Model, page => Url.Action("StudentByClass", new { page, @classlist=ViewBag.ClassListSearch }), new PagedListRenderOptions
                        {
                            UlElementClasses = new[] { "pagination" }
                        })
         </div>
     </div>
 </section>
+
