@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using ttcm_quan_li_sinh_vien.EF;
 
 namespace ttcm_quan_li_sinh_vien.Controllers
@@ -38,6 +39,15 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 if (_context.TEACHERs.FirstOrDefault(x => x.TeacherID == teacher.TeacherID) == null)
                 {
                     _context.TEACHERs.Add(teacher);
+                    if(_context.Users.FirstOrDefault(x => x.Username == teacher.TeacherID) == null)
+                    {
+                        var user = new User();
+                        user.Username = teacher.TeacherID;
+                        user.Password = "1";
+                        user.RoleID = "teacher";
+                        user.Status = true;
+                        _context.Users.Add(user);
+                    }
                     _context.SaveChanges();
                     ViewBag.ErrorTeacher = "";
                     return RedirectToAction("ManageTeacher");
@@ -110,6 +120,8 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
             var res = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == teacher.TeacherID);
             ViewBag.ErrorTeacher = "";
+            var user = _context.Users.FirstOrDefault(x => x.Username == res.TeacherID);
+            _context.Users.Remove(user);
             _context.TEACHERs.Remove(res);
             _context.SaveChanges();
             return RedirectToAction("ManageTeacher");
@@ -129,6 +141,15 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 if (_context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID) == null)
                 {
                     _context.STUDENTs.Add(student);
+                    if (_context.Users.FirstOrDefault(x => x.Username == student.StudentID) == null)
+                    {
+                        var user = new User();
+                        user.Username = student.StudentID;
+                        user.Password = "1";
+                        user.RoleID = "student";
+                        user.Status = true;
+                        _context.Users.Add(user);
+                    }
                     _context.SaveChanges();
                     ViewBag.ErrorStudent = "";
                     return RedirectToAction("ManageStudent");
@@ -216,19 +237,66 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID);
                 ViewBag.ErrorStudent = "";
                 _context.STUDENTs.Remove(res);
+                var user = _context.Users.FirstOrDefault(x => x.Username == student.StudentID);
+                _context.Users.Remove(user);
                 _context.SaveChanges();
                 return RedirectToAction("ManageStudent");
             }
         }
 
-        public ActionResult AddUser()
+        public ActionResult ManageUser(int? page)
         {
-            return View();
+            int pageSize = 20;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listUser = _context.Users.ToList();
+            return View(listUser.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult ManageUser()
+        public ActionResult SearchUser(int? page, string searchUser)
         {
-            return View();
+            int pageSize = 20;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listUser = _context.Users.Where(x=>x.Username.Contains(searchUser)).ToList();
+            ViewBag.SearchUser = searchUser;
+            return View(listUser.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult UpdateUser(string id)
+        {
+            var user = _context.Users.FirstOrDefault(x=>x.Username== id);
+            ViewBag.ListRole = new SelectList(_context.Roles.ToList(), "RoleID", "Description");
+            List<bool> stt = new List<bool>();
+            stt.Add(true);
+            stt.Add(false);
+            var lstt = new SelectList(stt);
+            ViewBag.ListStatus = lstt;
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUser(User user)
+        {
+            var res = _context.Users.FirstOrDefault(x => x.Username== user.Username);
+            res.Password= user.Password;
+            res.RoleID= user.RoleID;
+            res.Status=user.Status;
+            _context.SaveChanges();
+            return RedirectToAction("ManageUser");
+        }
+
+        public ActionResult DeleteUser(string id)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Username == id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteUser(User user)
+        {
+            var res = _context.Users.FirstOrDefault(x => x.Username == user.Username);
+            _context.Users.Remove(res);
+            _context.SaveChanges();
+            return RedirectToAction("ManageUser");  
         }
     }
 }

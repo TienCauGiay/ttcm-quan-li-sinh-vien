@@ -3,7 +3,7 @@
 @model IPagedList<ttcm_quan_li_sinh_vien.EF.User>
 
 @{
-    ViewBag.Title = "ManageUser";
+    ViewBag.Title = "SearchUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,7 @@
             <div class="col-sm-6">
                 @using (Html.BeginForm("SearchUser", "Admin", FormMethod.Post))
                 {
-                    <input type="search" id="searchUser" name="searchUser" class="form-control" placeholder="Tìm kiếm tài khoản..." aria-controls="example1">
+                    <input type="search" id="searchUser" name="searchUser" class="form-control" value="@ViewBag.SearchUser" placeholder="Tìm kiếm tài khoản..." aria-controls="example1">
                 }
             </div>
         </div>
@@ -81,11 +81,12 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page }), new PagedListRenderOptions
+            @Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page, @searchUser = ViewBag.SearchUser }), new PagedListRenderOptions
                        {
                            UlElementClasses = new[] { "pagination" }
                        })
         </div>
     </div>
 </section>
+
 

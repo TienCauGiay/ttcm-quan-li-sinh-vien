@@ -1,0 +1,88 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.User
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-user"></span> Bạn có chắc muốn xóa tài khoản này không?</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Thông tin tài khoản</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @*, new { enctype = "multipart/form-data" }*@
+            @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post))
+            {
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tài khoản</label>
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Tài khoản", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mật khẩu</label>
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Chức vụ</label>
+                                @if (Model.RoleID == "admin")
+                                {
+                                    <input class="form-control" value="Quản trị viên" readonly />
+                                }
+                                else if (Model.RoleID == "teacher")
+                                {
+                                    <input class="form-control" value="Giảng viên" readonly />
+                                }
+                                else
+                                {
+                                    <input class="form-control" value="Sinh viên" readonly />
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Trạng thái</label>
+                                @if (Model.Status == true)
+                                {
+                                    <input class="form-control" value="Hoạt động" readonly />
+                                }
+                                else
+                                {
+                                    <input class="form-control" value="Không hoạt động" readonly />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Xác nhận xóa</button>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

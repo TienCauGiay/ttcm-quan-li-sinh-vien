@@ -104,15 +104,27 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
-                name: "admin add user",
-                url: "them-tai-khoan",
-                defaults: new { controller = "Admin", action = "AddUser", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "admin manage user",
                 url: "quan-li-tai-khoan",
                 defaults: new { controller = "Admin", action = "ManageUser", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin search user",
+                url: "tim-kiem-tai-khoan",
+                defaults: new { controller = "Admin", action = "SearchUser", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin update user",
+                url: "quan-li-tai-khoan/sua-{id}",
+                defaults: new { controller = "Admin", action = "UpdateUser", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "admin delete user",
+                url: "quan-li-tai-khoan/xoa-{id}",
+                defaults: new { controller = "Admin", action = "DeleteUser", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

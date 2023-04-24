@@ -1,0 +1,70 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.User
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-user"></span> Cập nhật tài khoản</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Thông tin tài khoản</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @*, new { enctype = "multipart/form-data" }*@
+            @using (Html.BeginForm("UpdateUser", "Admin", FormMethod.Post))
+            {
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tài khoản</label>
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Tài khoản", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mật khẩu</label>
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Chức vụ</label>
+                                @Html.DropDownListFor(m => m.RoleID, ViewBag.ListRole as SelectList, "-- Chọn chức vụ --", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Trạng thái</label>
+                                @Html.DropDownListFor(m => m.RoleID, ViewBag.ListStatus as SelectList, "-- Chọn trạng thái --", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
