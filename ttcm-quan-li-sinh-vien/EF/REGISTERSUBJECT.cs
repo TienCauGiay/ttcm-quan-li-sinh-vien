@@ -22,6 +22,9 @@ namespace ttcm_quan_li_sinh_vien.EF
         [StringLength(100)]
         public string AddressLearn { get; set; }
 
+        [StringLength(100)]
+        public string SubjectName { get; set; }
+
         public virtual STUDENT STUDENT { get; set; }
     }
 }

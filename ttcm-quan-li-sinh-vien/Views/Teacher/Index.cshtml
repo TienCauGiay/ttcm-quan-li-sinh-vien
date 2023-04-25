@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
+
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -32,7 +39,7 @@
 
                                 <div class="form-group" style="display:flex;">
                                     <label for="exampleInputEmail1" style="margin-top:8px;">ID: </label>
-                                    @Html.TextBoxFor(m => m.TeacherID, new { @class = "form-control", @placeholder = "Mã giảng viên", @readonly = "readonly", @style="border:none; background-color:white;" })
+                                    @Html.TextBoxFor(m => m.TeacherID, new { @class = "form-control", @placeholder = "Mã giảng viên", @readonly = "readonly", @style = "border:none; background-color:white;" })
                                 </div>
                             </div>
                         </div>
@@ -86,7 +93,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
                 </div>
             }
         </div>
@@ -94,5 +101,4 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-         </div>
 <!-- /.content-wrapper -->

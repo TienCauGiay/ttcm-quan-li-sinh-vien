@@ -170,11 +170,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202304251802567_AddSubjectNameToRegisterSubject.cs" />
-    <Compile Include="Migrations\202304251802567_AddSubjectNameToRegisterSubject.designer.cs">
-      <DependentUpon>202304251802567_AddSubjectNameToRegisterSubject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +296,8 @@
     <Content Include="Views\Admin\SearchUser.cshtml" />
     <Content Include="Views\Admin\UpdateUser.cshtml" />
     <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Student\Score.cshtml" />
+    <Content Include="Views\Student\Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,11 +317,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304251802567_AddSubjectNameToRegisterSubject.resx">
-      <DependentUpon>202304251802567_AddSubjectNameToRegisterSubject.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -44,7 +44,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             res.Image = teacher.Image;
             _context.TEACHERs.AddOrUpdate(res);
             _context.SaveChanges();
-
+            TempData["AlertMessage"] = "Cập nhật thông tin thành công";
             return RedirectToAction("Index");
         }
 
