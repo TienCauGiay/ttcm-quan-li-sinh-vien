@@ -17,7 +17,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
     {
         QLSVDbContext _context = null;
 
-        public TeacherController() 
+        public TeacherController()
         {
             _context = new QLSVDbContext();
         }
@@ -44,6 +44,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             res.Image = teacher.Image;
             _context.TEACHERs.AddOrUpdate(res);
             _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -91,13 +92,13 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             return View();
         }
 
-        public ActionResult ScoreStudentByClass(int? page, string classlist,string subjectlist)
+        public ActionResult ScoreStudentByClass(int? page, string classlist, string subjectlist)
         {
             var user = (User)Session["User"];
             var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
             int pageSize = 5;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
-            var listScoreStudent = _context.SCOREs.Where(x=>x.STUDENT.ClassID.Contains(classlist) && x.SubjectID.Contains(subjectlist)).ToList();
+            var listScoreStudent = _context.SCOREs.Where(x => x.STUDENT.ClassID.Contains(classlist) && x.SubjectID.Contains(subjectlist)).ToList();
             ViewBag.ClassList = _context.CLASSes.Where(x => x.FACULTY.FacultyID == teacher.FacultyID).DistinctBy(c => c.Name).ToList();
             ViewBag.SubjectList = _context.SUBJECTs.ToList();
             ViewBag.ClassListSearch = classlist;
@@ -110,14 +111,14 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             if (excelFile == null || excelFile.ContentLength == 0)
             {
-                ModelState.AddModelError("excelFile", "Vui lòng chọn một file Excel");
-                return View();
+                TempData["AlertMessage"] = "Vui lòng chọn một file Excel";
+                return RedirectToAction("Score");
             }
 
             if (!excelFile.FileName.EndsWith(".xlsx") && !excelFile.FileName.EndsWith(".xls"))
             {
-                ModelState.AddModelError("excelFile", "File không đúng định dạng");
-                return View();
+                TempData["AlertMessage"] = "File không đúng định dạng";
+                return RedirectToAction("Score");
             }
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -127,39 +128,41 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
                 if (worksheet != null)
                 {
-                    int rowCount = worksheet.Dimension.Rows;
-                    for (int row = 2; row <= rowCount; row++)
+                    try
                     {
-                        string studentId = worksheet.Cells[row, 1].Value?.ToString();
-                        string subjectId = worksheet.Cells[row, 2].Value?.ToString();
-                        double diemcc = double.Parse(worksheet.Cells[row, 3].Value?.ToString());
-                        double diemkt= double.Parse(worksheet.Cells[row, 4].Value?.ToString());
-                        double diemThi = double.Parse(worksheet.Cells[row, 5].Value?.ToString());
-                        double diemTB = double.Parse(worksheet.Cells[row, 6].Value?.ToString());
+                        int rowCount = worksheet.Dimension.Rows;
+                        for (int row = 2; row <= rowCount; row++)
+                        {
+                            string studentId = worksheet.Cells[row, 1].Value?.ToString();
+                            string subjectId = worksheet.Cells[row, 2].Value?.ToString();
+                            double diemcc = double.Parse(worksheet.Cells[row, 3].Value?.ToString());
+                            double diemkt = double.Parse(worksheet.Cells[row, 4].Value?.ToString());
+                            double diemThi = double.Parse(worksheet.Cells[row, 5].Value?.ToString());
+                            double diemTB = double.Parse(worksheet.Cells[row, 6].Value?.ToString());
 
-                        // Lưu điểm của sinh viên vào cơ sở dữ liệu
-                        var score = new SCORE
-                        {
-                            StudentID = studentId,
-                            SubjectID = subjectId,
-                            ScoreCC = diemcc,
-                            ScoreKT= diemkt,
-                            DiemThi = diemThi,
-                            DiemTB = diemTB
-                        };
-                        try
-                        {
+                            // Lưu điểm của sinh viên vào cơ sở dữ liệu
+                            var score = new SCORE
+                            {
+                                StudentID = studentId,
+                                SubjectID = subjectId,
+                                ScoreCC = diemcc,
+                                ScoreKT = diemkt,
+                                DiemThi = diemThi,
+                                DiemTB = diemTB
+                            };
                             _context.SCOREs.Add(score);
                             _context.SaveChanges();
-                        }catch(Exception ex)
-                        {
-
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["AlertMessage"] = "Nhập điểm sinh viên không thành công, vui lòng kiểm tra lại file excel";
+                        return RedirectToAction("Score");
                     }
                 }
             }
 
-            ViewBag.Message = "Upload thành công";
+            TempData["AlertMessage"] = "Nhập điểm sinh viên thành công";
             return RedirectToAction("Score");
         }
 
@@ -172,10 +175,10 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         [HttpPost]
         public ActionResult UpdateScore(SCORE score)
         {
-            var res = _context.SCOREs.FirstOrDefault(x=>x.StudentID == score.StudentID && x.SubjectID == score.SubjectID);
+            var res = _context.SCOREs.FirstOrDefault(x => x.StudentID == score.StudentID && x.SubjectID == score.SubjectID);
             res.ScoreCC = score.ScoreCC;
             res.ScoreKT = score.ScoreKT;
-            res.DiemThi= score.DiemThi;
+            res.DiemThi = score.DiemThi;
             res.DiemTB = (score.ScoreCC + score.ScoreKT * 2 + score.DiemThi * 3) / 6;
             _context.SaveChanges();
             return RedirectToAction("Score");

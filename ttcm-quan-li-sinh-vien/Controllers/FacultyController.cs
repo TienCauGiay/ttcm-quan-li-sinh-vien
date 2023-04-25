@@ -31,6 +31,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                     _context.FACULTies.Add(faculty);
                     _context.SaveChanges();
                     ViewBag.ErrorFaculty = "";
+                    TempData["AlertMessage"] = "Thêm khoa mới thành công";
                     return RedirectToAction("ManageFaculty");
                 }
                 else
@@ -63,6 +64,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 _context.FACULTies.AddOrUpdate(res);
                 _context.SaveChanges();
             }
+            TempData["AlertMessage"] = "Cập nhật thông tin khoa thành công";
             return RedirectToAction("ManageFaculty");
         }
 
@@ -89,6 +91,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 ViewBag.ErrorFaculty = "Bạn không thể xóa khoa này";
                 return View(faculty);
             }
+            TempData["AlertMessage"] = "Xóa khoa thành công";
             return RedirectToAction("ManageFaculty");
         }
     }

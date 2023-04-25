@@ -50,6 +50,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                     }
                     _context.SaveChanges();
                     ViewBag.ErrorTeacher = "";
+                    TempData["AlertMessage"] = "Thêm giảng viên thành công";
                     return RedirectToAction("ManageTeacher");
                 }
                 else
@@ -101,6 +102,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 res.Image = teacher.Image;
                 _context.TEACHERs.AddOrUpdate(res);
                 _context.SaveChanges();
+                TempData["AlertMessage"] = "Cập nhật thông tin giảng viên thành công";
                 return RedirectToAction("ManageTeacher");
             }
             ViewBag.Faculty = new SelectList(_context.FACULTies.ToList(), "FacultyID", "Name");
@@ -124,6 +126,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             _context.Users.Remove(user);
             _context.TEACHERs.Remove(res);
             _context.SaveChanges();
+            TempData["AlertMessage"] = "Xóa giảng viên thành công";
             return RedirectToAction("ManageTeacher");
         }
 
@@ -152,6 +155,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                     }
                     _context.SaveChanges();
                     ViewBag.ErrorStudent = "";
+                    TempData["AlertMessage"] = "Thêm sinh viên thành công";
                     return RedirectToAction("ManageStudent");
                 }
                 else
@@ -204,6 +208,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 res.YearAdmission= student.YearAdmission;
                 _context.STUDENTs.AddOrUpdate(res);
                 _context.SaveChanges();
+                TempData["AlertMessage"] = "Cập nhật thông tin sinh viên thành công";
                 return RedirectToAction("ManageStudent");
             }
             ViewBag.Classes = new SelectList(_context.CLASSes.ToList(), "ClassID", "Name");
@@ -240,6 +245,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Username == student.StudentID);
                 _context.Users.Remove(user);
                 _context.SaveChanges();
+                TempData["AlertMessage"] = "Xóa sinh viên thành công";
                 return RedirectToAction("ManageStudent");
             }
         }
@@ -265,11 +271,6 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             var user = _context.Users.FirstOrDefault(x=>x.Username== id);
             ViewBag.ListRole = new SelectList(_context.Roles.ToList(), "RoleID", "Description");
-            List<bool> stt = new List<bool>();
-            stt.Add(true);
-            stt.Add(false);
-            var lstt = new SelectList(stt);
-            ViewBag.ListStatus = lstt;
             return View(user);
         }
 
@@ -281,6 +282,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             res.RoleID= user.RoleID;
             res.Status=user.Status;
             _context.SaveChanges();
+            TempData["AlertMessage"] = "Cập nhật tài khoản thành công";
             return RedirectToAction("ManageUser");
         }
 
@@ -296,6 +298,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var res = _context.Users.FirstOrDefault(x => x.Username == user.Username);
             _context.Users.Remove(res);
             _context.SaveChanges();
+            TempData["AlertMessage"] = "Xóa tài khoản thành công";
             return RedirectToAction("ManageUser");  
         }
     }

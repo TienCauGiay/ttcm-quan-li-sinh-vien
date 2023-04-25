@@ -52,7 +52,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Trạng thái</label>
-                                @Html.DropDownListFor(m => m.RoleID, ViewBag.ListStatus as SelectList, "-- Chọn trạng thái --", new { @class = "form-control" })
+                                <select class="form-control" id="Status" name="Status">
+                                    <option>--Chọn trạng thái--</option>
+                                    <option>True</option>
+                                    <option>False</option>
+                                </select>
                             </div>
                         </div>
                     </div>
