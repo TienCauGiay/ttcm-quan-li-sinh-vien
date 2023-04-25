@@ -91,3 +91,5 @@ F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\Microsoft.IO.RecyclableMemoryStream.dll
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\EPPlus.xml
 F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\bin\Microsoft.IO.RecyclableMemoryStream.xml
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\obj\Debug\ttcm_quan_li_sinh_vien.Migrations.AddSubjectNameToRegisterSubject.resources
+F:\DHGTVT\ThucTapChuyenMon_Back-end Dev\ttcm-quan-li-sinh-vien\ttcm-quan-li-sinh-vien\obj\Debug\ttcm-quan-li-sinh-vien.csproj.GenerateResource.cache
