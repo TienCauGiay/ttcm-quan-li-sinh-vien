@@ -35,6 +35,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
                 if (user.RoleID == "student")
                     return RedirectToAction("Index", "Student");
             }
+            TempData["AlertMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng";
             return View(user);
         }
 
