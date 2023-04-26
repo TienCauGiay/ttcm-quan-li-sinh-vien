@@ -152,6 +152,12 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
+                name: "teacher change password",
+                url: "giang-vien/doi-mat-khau",
+                defaults: new { controller = "Teacher", action = "ChangePassword", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "teacher manage schedule",
                 url: "giang-vien/lich-giang-day",
                 defaults: new { controller = "Teacher", action = "Schedule", id = UrlParameter.Optional }
@@ -179,6 +185,12 @@ namespace ttcm_quan_li_sinh_vien
                 name: "student",
                 url: "sinh-vien",
                 defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "student change password",
+                url: "sinh-vien/doi-mat-khau",
+                defaults: new { controller = "Student", action = "ChangePassword", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

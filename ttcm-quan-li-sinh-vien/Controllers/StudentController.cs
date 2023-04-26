@@ -154,5 +154,21 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var res = _context.REGISTERSUBJECTs.Where(x => x.StudentID == student.StudentID).ToList();
             return View(res);
         }
+
+        public ActionResult ChangePassword()
+        {
+            var user = (User)Session["User"];
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
+        {
+            var res = _context.Users.FirstOrDefault(x => x.Username == user.Username);
+            res.Password= user.Password;
+            _context.SaveChanges();
+            TempData["AlertMessage"] = "Bạn đã đổi mật khẩu thành công";
+            return RedirectToAction("Index");
+        }
     }
 }
