@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ttcm_quan_li_sinh_vien.EF.REGISTERSUBJECT>
+
 @{
     ViewBag.Title = "Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,3 +11,57 @@
         @TempData["AlertMessage"]
     </div>
 }
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-chalkboard-teacher"></span> Danh sách các môn học đã đăng ký</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card-body animated pulse">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Tên môn học</th>
+                        <th>Thời gian học</th>
+                        <th>Phòng học</th>
+                        <th>Giảng viên</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.SubjectName</td>
+
+                                <td>@item.TimeLearning</td>
+
+                                <td>@item.AddressLearn</td>
+
+                                <td>@item.TeacherName</td>
+                                @if (item.Status == true)
+                                {
+                                    <td>Đã xác nhận</td>
+                                }
+                                else
+                                {
+                                    <td>Chưa xác nhận</td>
+                                }
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -186,7 +186,10 @@ namespace ttcm_quan_li_sinh_vien.Controllers
 
         public ActionResult Schedule()
         {
-            return View();
+            var user = (User)Session["User"];
+            var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
+            var res = _context.REGISTERSUBJECTs.Where(x => x.TeacherName.Contains(teacher.FullName)).ToList();
+            return View(res);
         }
     }
 }

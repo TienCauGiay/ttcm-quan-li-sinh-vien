@@ -13,8 +13,11 @@
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6 animated bounceInRight">
-                <h1 class="m-0"><span class="fa fa-paint-brush"></span> Danh sách điểm sinh viên</h1>
+            <div class="col-sm-4 animated bounceInRight">
+                <h1 class="m-0"><span class="fa fa-paint-brush"></span> Bảng điểm sinh viên</h1>
+            </div>
+            <div class="col-sm-2 animated bounceInRight">
+                <h1 class="m-0">Điểm tổng: @Math.Round(ViewBag.DiemHeMuoi, 2)</h1>
             </div>
             <div class="col-sm-6">
                 @using (Html.BeginForm("ScoreBySemester", "Student"))

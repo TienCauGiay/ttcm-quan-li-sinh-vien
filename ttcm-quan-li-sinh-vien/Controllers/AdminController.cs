@@ -1,6 +1,7 @@
 ﻿using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
@@ -300,6 +301,44 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             _context.SaveChanges();
             TempData["AlertMessage"] = "Xóa tài khoản thành công";
             return RedirectToAction("ManageUser");  
+        }
+
+        public ActionResult SetupSchedule()
+        {
+            var result = (_context.REGISTERSUBJECTs.Where(rs => rs.Status == false).Select(rs => rs.SubjectName).Distinct()).ToList();
+            var subject = new SelectList(_context.SUBJECTs.Where(x => result.Contains(x.Name)).ToList(), "Name", "Name");
+            var teacher = new SelectList(_context.TEACHERs.ToList(), "FullName", "FullName");
+            ViewBag.Subject = subject;
+            ViewBag.Teacher = teacher;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetupSchedule(REGISTERSUBJECT resgisterSubject)
+        {
+            var res = _context.REGISTERSUBJECTs.Where(x => x.SubjectName.Contains(resgisterSubject.SubjectName) && x.Status == false).ToList();
+            foreach(var item in res)
+            {
+                item.TimeLearning = resgisterSubject.TimeLearning;
+                item.AddressLearn = resgisterSubject.AddressLearn;
+                item.TeacherName = resgisterSubject.TeacherName;
+                item.Status = true;
+            }
+            try
+            {
+                _context.SaveChanges();
+                TempData["AlertMessage"] = "Phân công lịch giảng dạy, học tập thành công";
+            }
+            catch(Exception ex)
+            {
+                TempData["AlertMessage"] = "Phân công lịch giảng dạy, học tập không thành công";
+            }
+            var result = (_context.REGISTERSUBJECTs.Where(rs => rs.Status == false).Select(rs => rs.SubjectName).Distinct()).ToList();
+            var subject = new SelectList(_context.SUBJECTs.Where(x => result.Contains(x.Name)).ToList(), "Name", "Name");
+            var teacher = new SelectList(_context.TEACHERs.ToList(), "FullName", "FullName");
+            ViewBag.Subject = subject;
+            ViewBag.Teacher = teacher;
+            return View();
         }
     }
 }

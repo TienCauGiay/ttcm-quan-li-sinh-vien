@@ -49,9 +49,17 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             var user = (User)Session["User"];
             var student = _context.STUDENTs.FirstOrDefault(x => x.StudentID == user.Username);
-            int pageSize = 20;
+            int pageSize = 15;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
             var listScore = _context.SCOREs.Where(x => x.StudentID == student.StudentID).ToList();
+            double? diem = 0.0;
+            int? stc = 0;
+            foreach(var item in listScore)
+            {
+                diem += item.DiemTB * item.SUBJECT.NumberTC;
+                stc += item.SUBJECT.NumberTC;
+            }
+            ViewBag.DiemHeMuoi = diem / stc;
             ViewBag.Semester = _context.SEMESTERs.ToList();
             return View(listScore.ToPagedList(pageNumber, pageSize));
         }
@@ -70,8 +78,15 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var user = (User)Session["User"];
             var student = _context.STUDENTs.FirstOrDefault(x => x.StudentID == user.Username);
             var listSubject = (from s in _context.SUBJECTs
-                              where !(from sc in _context.SCOREs where sc.StudentID == student.StudentID select sc.SubjectID).Contains(s.SubjectID)
-                              select s).ToList();
+                               where !(from sc in _context.SCOREs
+                                       where sc.StudentID == student.StudentID
+                                       select sc.SubjectID)
+                               .Contains(s.SubjectID)
+                               || (from sc in _context.SCOREs
+                                   where sc.StudentID == student.StudentID && sc.DiemTB < 4
+                                   select sc.SubjectID)
+                               .Contains(s.SubjectID)
+                               select s).ToList();
             ViewBag.Subjects = new SelectList(listSubject, "SubjectID", "Name");
             return View();
         }
@@ -87,15 +102,38 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             r.RegisterSubjectID = idRegsiter;
             r.StudentID= student.StudentID;
             r.SubjectName = subject.Name;
-            _context.REGISTERSUBJECTs.Add(r);
-            _context.SaveChanges();
+            r.Status = false;
+            try
+            {
+                _context.REGISTERSUBJECTs.Add(r);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                TempData["AlertMessage"] = "Bạn đã đăng kí môn " + subject.Name + ", vui lòng kiểm tra lịch học";
+                var listSubject = (from s in _context.SUBJECTs
+                                   where !(from sc in _context.SCOREs
+                                           where sc.StudentID == student.StudentID
+                                           select sc.SubjectID)
+                                   .Contains(s.SubjectID)
+                                   || (from sc in _context.SCOREs
+                                       where sc.StudentID == student.StudentID && sc.DiemTB < 4
+                                       select sc.SubjectID)
+                                   .Contains(s.SubjectID)
+                                   select s).ToList();
+                ViewBag.Subjects = new SelectList(listSubject, "SubjectID", "Name");
+                return View(r);
+            }
             TempData["AlertMessage"] = "Bạn đã đăng kí học môn " + subject.Name + " thành công";
             return RedirectToAction("Schedule");
         }
 
         public ActionResult Schedule()
         {
-            return View();
+            var user = (User)Session["User"];
+            var student = _context.STUDENTs.FirstOrDefault(x => x.StudentID == user.Username);
+            var res = _context.REGISTERSUBJECTs.Where(x => x.StudentID == student.StudentID).ToList();
+            return View(res);
         }
     }
 }

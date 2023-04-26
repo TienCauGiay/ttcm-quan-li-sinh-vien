@@ -1,0 +1,66 @@
+﻿@model ttcm_quan_li_sinh_vien.EF.REGISTERSUBJECT
+@{
+    ViewBag.Title = "SetupSchedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Phân công lịch giảng dạy, học tập</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @using (Html.BeginForm("SetupSchedule", "Admin", FormMethod.Post))
+            {
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Môn học</label>
+                                        @Html.DropDownListFor(m => m.SubjectName, ViewBag.Subject as SelectList, "-- Chọn môn --", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Giảng viên</label>
+                                        @Html.DropDownListFor(m => m.TeacherName, ViewBag.Teacher as SelectList, "-- Chọn giảng viên --", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Thời gian học</label>
+                                        @Html.TextBoxFor(m => m.TimeLearning, new { @class = "form-control", @placeholder = "Thời gian học" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Phòng học</label>
+                                        @Html.TextBoxFor(m => m.AddressLearn, new { @class = "form-control", @placeholder = "Phòng học" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->

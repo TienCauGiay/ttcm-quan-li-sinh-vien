@@ -300,6 +300,7 @@
     <Content Include="Views\Student\Schedule.cshtml" />
     <Content Include="Views\Student\ScoreBySemester.cshtml" />
     <Content Include="Views\Student\Register.cshtml" />
+    <Content Include="Views\Admin\SetupSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

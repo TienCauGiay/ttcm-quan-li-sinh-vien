@@ -20,6 +20,12 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
+                name: "admin setup schedule",
+                url: "quan-li-lich-giang-day-hoc-tap",
+                defaults: new { controller = "Admin", action = "SetupSchedule", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "admin add faculty",
                 url: "them-khoa",
                 defaults: new { controller = "Faculty", action = "AddFaculty", id = UrlParameter.Optional }

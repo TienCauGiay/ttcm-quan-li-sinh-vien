@@ -25,6 +25,11 @@ namespace ttcm_quan_li_sinh_vien.EF
         [StringLength(100)]
         public string SubjectName { get; set; }
 
+        [StringLength(100)]
+        public string TeacherName { get; set; }
+
+        public bool? Status { get; set; }
+
         public virtual STUDENT STUDENT { get; set; }
     }
 }
