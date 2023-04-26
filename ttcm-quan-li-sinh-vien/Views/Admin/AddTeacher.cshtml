@@ -23,9 +23,6 @@
             <div class="card-header">
                 <h3 class="card-title">Thông tin giảng viên mới</h3>
             </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            @*, new { enctype = "multipart/form-data" }*@
             @using (Html.BeginForm("AddTeacher", "Admin", FormMethod.Post))
             {
                 <span class="text-danger">@ViewBag.ErrorTeacher</span>
@@ -84,7 +81,6 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Ảnh đại diện</label>
-                                @*<input type="file" id="fileName" name="fileName" accept="image/*" />*@
                                 @Html.TextBoxFor(m => m.Image, new { @class = "form-control", type = "file" })
                             </div>
                         </div>

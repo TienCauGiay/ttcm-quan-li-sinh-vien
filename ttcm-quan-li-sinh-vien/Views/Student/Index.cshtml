@@ -20,7 +20,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            @using (Html.BeginForm("UpdateStudent", "Student", FormMethod.Post))
+            @using (Html.BeginForm("UpdateStudent", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div class="card-body">
                     <div class="row">
@@ -39,6 +39,10 @@
                                 <div class="form-group" style="display:flex;">
                                     <label for="exampleInputEmail1" style="margin-top:8px;">ID: </label>
                                     @Html.TextBoxFor(m => m.StudentID, new { @class = "form-control", @placeholder = "Mã sinh viên", @readonly = "readonly", @style = "border:none; background-color:white;" })
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Chọn ảnh</label>
+                                    <input type="file" name="file" class="form-control" accept=".jpg, .jpeg, .png">
                                 </div>
                             </div>
                         </div>

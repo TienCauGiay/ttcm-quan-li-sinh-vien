@@ -1,11 +1,16 @@
 ﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.UI;
 using ttcm_quan_li_sinh_vien.EF;
@@ -27,7 +32,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             return View(student);
         }
 
-        public ActionResult UpdateStudent(STUDENT student) 
+        public ActionResult UpdateStudent(STUDENT student, HttpPostedFileBase file)
         {
             var res = _context.STUDENTs.FirstOrDefault(x => x.StudentID == student.StudentID);
             res.ClassID = student.ClassID;
@@ -38,7 +43,21 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             res.PhoneNumber = student.PhoneNumber;
             res.Email = student.Email;
             res.Image = student.Image;
-            res.YearAdmission= student.YearAdmission;
+            res.YearAdmission = student.YearAdmission;
+            var path = "";
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    if (Path.GetExtension(file.FileName).ToLower() == ".jpg"
+                         || Path.GetExtension(file.FileName).ToLower() == ".png"
+                        || Path.GetExtension(file.FileName).ToLower() == ".jpeg") {
+                        path = Path.Combine(Server.MapPath("~/assets/img/student"), file.FileName);
+                        file.SaveAs(path);
+                        res.Image = file.FileName;
+                    }
+                }
+            }
             _context.STUDENTs.AddOrUpdate(res);
             _context.SaveChanges();
             TempData["AlertMessage"] = "Cập nhật thông tin thành công";
@@ -54,7 +73,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var listScore = _context.SCOREs.Where(x => x.StudentID == student.StudentID).ToList();
             double? diem = 0.0;
             int? stc = 0;
-            foreach(var item in listScore)
+            foreach (var item in listScore)
             {
                 diem += item.DiemTB * item.SUBJECT.NumberTC;
                 stc += item.SUBJECT.NumberTC;
@@ -100,7 +119,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             var idRegsiter = student.StudentID + "_" + subject.SubjectID;
             REGISTERSUBJECT r = new REGISTERSUBJECT();
             r.RegisterSubjectID = idRegsiter;
-            r.StudentID= student.StudentID;
+            r.StudentID = student.StudentID;
             r.SubjectName = subject.Name;
             r.Status = false;
             try

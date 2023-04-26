@@ -4,6 +4,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Web;
@@ -31,7 +32,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateTeacher(TEACHER teacher)
+        public ActionResult UpdateTeacher(TEACHER teacher, HttpPostedFileBase file)
         {
             var res = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == teacher.TeacherID);
             res.FacultyID = teacher.FacultyID;
@@ -41,7 +42,21 @@ namespace ttcm_quan_li_sinh_vien.Controllers
             res.Address = teacher.Address;
             res.PhoneNumber = teacher.PhoneNumber;
             res.Email = teacher.Email;
-            res.Image = teacher.Image;
+            var path = "";
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    if (Path.GetExtension(file.FileName).ToLower() == ".jpg"
+                         || Path.GetExtension(file.FileName).ToLower() == ".png"
+                        || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                    {
+                        path = Path.Combine(Server.MapPath("~/assets/img/teacher"), file.FileName);
+                        file.SaveAs(path);
+                        res.Image = file.FileName;
+                    }
+                }
+            }
             _context.TEACHERs.AddOrUpdate(res);
             _context.SaveChanges();
             TempData["AlertMessage"] = "Cập nhật thông tin thành công";
