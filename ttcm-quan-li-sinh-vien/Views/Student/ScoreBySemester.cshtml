@@ -1,9 +1,7 @@
-﻿@using PagedList.Mvc;
-@using PagedList;
-@model IPagedList<ttcm_quan_li_sinh_vien.EF.SCORE>
+﻿@model List<ttcm_quan_li_sinh_vien.EF.SCORE>
 
 @{
-    ViewBag.Title = "Score";
+    ViewBag.Title = "ScoreBySemester";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -78,10 +76,6 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Score", new { page }), new PagedListRenderOptions
-                       {
-                           UlElementClasses = new[] { "pagination" }
-                       })
         </div>
     </div>
 </section>

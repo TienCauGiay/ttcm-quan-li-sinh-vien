@@ -170,9 +170,33 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
-                name: "Student",
+                name: "student",
                 url: "sinh-vien",
                 defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "student score",
+                url: "sinh-vien/diem",
+                defaults: new { controller = "Student", action = "Score", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "student score by semester",
+                url: "sinh-vien/diem-theo-hoc-ky",
+                defaults: new { controller = "Student", action = "ScoreBySemester", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "student register subject",
+                url: "sinh-vien/dang-ki-tin",
+                defaults: new { controller = "Student", action = "Register", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "student schedule",
+                url: "sinh-vien/lich",
+                defaults: new { controller = "Student", action = "Schedule", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

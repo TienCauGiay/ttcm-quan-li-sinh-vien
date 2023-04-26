@@ -298,6 +298,8 @@
     <Content Include="Views\Admin\DeleteUser.cshtml" />
     <Content Include="Views\Student\Score.cshtml" />
     <Content Include="Views\Student\Schedule.cshtml" />
+    <Content Include="Views\Student\ScoreBySemester.cshtml" />
+    <Content Include="Views\Student\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
