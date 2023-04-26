@@ -158,9 +158,9 @@ namespace ttcm_quan_li_sinh_vien
             );
 
             routes.MapRoute(
-                name: "teacher search by class",
-                url: "giang-vien/tim-kiem-theo-lop",
-                defaults: new { controller = "Teacher", action = "StudentByClass", id = UrlParameter.Optional }
+                name: "teacher search student",
+                url: "giang-vien/tim-kiem-sinh-vien",
+                defaults: new { controller = "Teacher", action = "SearchStudent", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
