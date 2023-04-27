@@ -192,7 +192,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             var user = (User)Session["User"];
             var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
-            var res = _context.REGISTERSUBJECTs.Where(x => x.TeacherName.Contains(teacher.FullName)).ToList();
+            var res = _context.REGISTERSUBJECTs.Where(x => x.TeacherName.Contains(teacher.FullName)).DistinctBy(x => x.TimeLearning).ToList();
             return View(res);
         }
 
