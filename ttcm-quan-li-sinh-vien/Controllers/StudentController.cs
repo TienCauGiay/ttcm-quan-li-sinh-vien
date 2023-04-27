@@ -87,7 +87,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             var user = (User)Session["User"];
             var student = _context.STUDENTs.FirstOrDefault(x => x.StudentID == user.Username);
-            var listScore = _context.SCOREs.Where(x => x.SUBJECT.SemesterID == semester && x.StudentID == student.StudentID).ToList();
+            var listScore = _context.SCOREs.Where(x => x.SUBJECT.SemesterID.Contains(semester) && x.StudentID == student.StudentID).ToList();
             ViewBag.Semester = _context.SEMESTERs.ToList();
             return View(listScore);
         }

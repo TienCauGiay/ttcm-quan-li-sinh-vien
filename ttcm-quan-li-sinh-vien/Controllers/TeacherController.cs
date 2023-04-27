@@ -100,7 +100,7 @@ namespace ttcm_quan_li_sinh_vien.Controllers
         {
             var user = (User)Session["User"];
             var teacher = _context.TEACHERs.FirstOrDefault(x => x.TeacherID == user.Username);
-            int pageSize = 5;
+            int pageSize = 20;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
             var listScoreStudent = _context.SCOREs.Where(x => x.STUDENT.ClassID.Contains(classlist) && x.SubjectID.Contains(subjectlist)).ToList();
             ViewBag.ClassList = _context.CLASSes.Where(x => x.FACULTY.FacultyID == teacher.FacultyID).DistinctBy(c => c.Name).ToList();
